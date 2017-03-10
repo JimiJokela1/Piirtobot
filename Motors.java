@@ -13,7 +13,7 @@ import lejos.robotics.RegulatedMotor;
 public class Motors {
 	private float defaultSpeed;
 	private int angleLimit = 1600;
-	private int lifterAngle = 45;
+	private int lifterAngle = 180;
 	
 	public EV3LargeRegulatedMotor rightMotor;
 	public EV3LargeRegulatedMotor leftMotor;
@@ -111,6 +111,8 @@ public class Motors {
 		leftMotor.rotate(leftAngle);
 		rightMotor.rotate(rightAngle);
 		syncEnd();
+		leftMotor.waitComplete();
+		rightMotor.waitComplete();
 	}
 	
 	public void lift() {
