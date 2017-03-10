@@ -177,6 +177,7 @@ public class IRChecker extends Thread {
 				LCD.drawString(teksti, 0, 3);
 				LCD.refresh();
 			}
+			infraredSensor.close();
 		} catch (Exception e) {
 			// aaaaaaaaaaaa
 		}
