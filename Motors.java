@@ -5,7 +5,7 @@ import lejos.robotics.RegulatedMotor;
 
 /**
  * Moottorin ohjaus
- * @author ?
+ * @author Jimi
  * Tässä tiedostossa voidaan ohjata moottoreita.
  */
 
@@ -27,20 +27,6 @@ public class Motors {
 		rightMotor.setSpeed(defaultSpeed);
 		leftMotor.setSpeed(defaultSpeed);
 		lifterMotor.setSpeed(defaultSpeed);
-	}
-	
-	/**
-	 * Tämä metodi tarkistaa ollaanko liian lähellä rajoja
-	 * @return
-	 */
-	
-	public boolean checkPosition() {
-		// jos ollaan liian lähellä rajaa
-		if (Math.abs(leftMotor.getPosition()) + Math.abs(rightMotor.getPosition()) >= angleLimit) {
-			return false;
-		} else {
-			return true;
-		}
 	}
 	
 	public void syncStart(){
@@ -136,6 +122,12 @@ public class Motors {
 		rightMotor.flt(true);
 		syncEnd();
 	}
+
+	public void close(){
+		rightMotor.close();
+		leftMotor.close();
+		lifterMotor.close();
+	}
 	
 	public void setSpeed(float leftSpeed, float rightSpeed) {
 		leftMotor.setSpeed(leftSpeed / 100 * defaultSpeed);
@@ -158,6 +150,20 @@ public class Motors {
 	}
 	
 	/**
+	 * Tämä metodi tarkistaa ollaanko liian lähellä rajoja
+	 * @return
+	 */
+	
+	public boolean checkPosition() {
+		// jos ollaan liian lähellä rajaa
+		if (Math.abs(leftMotor.getPosition()) + Math.abs(rightMotor.getPosition()) >= angleLimit) {
+			return false;
+		} else {
+			return true;
+		}
+	}
+	
+	/**
 	 * Tämä metodi palauttaa robotin nollakohtaan jos liian lähellä rajoja
 	 * @return
 	 */
@@ -166,11 +172,5 @@ public class Motors {
 		if (!checkPosition()) {
 			resetPosition();
 		}
-	}
-	
-	public void close(){
-		rightMotor.close();
-		leftMotor.close();
-		lifterMotor.close();
 	}
 }
