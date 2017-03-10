@@ -29,7 +29,7 @@ public class Main {
 		//motors.resetPosition();
 		LCD.clear();
 		motors.close();
-		irSensor.close();
+		
 	}
 	
 	static void init() {
