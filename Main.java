@@ -15,8 +15,17 @@ public class Main {
 	static EV3IRSensor irSensor;
 	
 	public static void main(String[] args) {
-		
 		init();
+	}
+	
+	static void init() {
+		motors = new Motors();
+		penController = new PenController(motors);
+		shapes = new Shapes(penController);
+		letters = new Letters(penController);
+		irSensor = new EV3IRSensor(SensorPort.S1);
+		irs = new IRChecker(irSensor, shapes, letters, motors);
+		
 		irs.start();
 		
 		while (true) {
@@ -29,15 +38,5 @@ public class Main {
 		//motors.resetPosition();
 		LCD.clear();
 		motors.close();
-		
-	}
-	
-	static void init() {
-		motors = new Motors();
-		penController = new PenController(motors);
-		shapes = new Shapes(penController);
-		letters = new Letters(penController);
-		irSensor = new EV3IRSensor(SensorPort.S1);
-		irs = new IRChecker(irSensor, shapes, letters, motors);
 	}
 }
